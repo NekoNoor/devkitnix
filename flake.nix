@@ -17,10 +17,10 @@
     };
     imageARM = pkgs.dockerTools.pullImage {
       imageName = "devkitpro/devkitarm";
-      imageDigest = "sha256:969ef8e5ace59b7acd007a9a4806fcd9ceefb016156d0944cb160653d7e7b0a6";
-      sha256 = "qWFXpBLCJrle6IspjKrrKkidJsFM1VATByzrP8+iI3g=";
+      imageDigest = "sha256:361612a751190f4eafebb9da80b1b371507e4c6bbc23addd17911eea90eb6ba9";
+      sha256 = "7ayg3TME/KURenGRPqgQCbLeeJIHMUnkZxy3YDziaLI=";
       finalImageName = "devkitpro/devkitarm";
-      finalImageTag = "20190212";
+      finalImageTag = "20180522";
     };
     imagePPC = pkgs.dockerTools.pullImage {
       imageName = "devkitpro/devkitppc";
@@ -98,6 +98,7 @@
       src = extractDocker imageARM;
       nativeBuildInputs = [pkgs.autoPatchelfHook];
       buildInputs = [
+        pkgs.ncurses5
         pkgs.stdenv.cc.cc
         pkgs.ncurses6
         pkgs.zsnes
@@ -105,7 +106,7 @@
       buildPhase = "true";
       installPhase = ''
         mkdir -p $out
-        cp -r $src/{devkitARM,libgba,libnds,libctru,libmirko,liborcus,portlibs,tools} $out
+        cp -r $src/{devkitARM,libgba,libnds,libctru,libmirko,portlibs,tools} $out
         rm -rf $out/pacman
       '';
     };
